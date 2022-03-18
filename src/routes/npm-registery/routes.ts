@@ -27,7 +27,11 @@ export class NpmRegisteryRoutes {
     next: NextFunction
   ) => {
     try {
-
+      const { name, version } = req.query;
+      const npmUrl = `${config.NPM_REGISTERY_BASE_PATH}/${name}/${version}`;
+      const response = await fetch(npmUrl);
+      const data = await response.json();
+      return res.json({ message: 'Package Details Fetched', data })
     } catch (error) {
       next(error);
     }

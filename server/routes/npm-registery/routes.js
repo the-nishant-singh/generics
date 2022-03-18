@@ -35,6 +35,11 @@ NpmRegisteryRoutes.getPackagesList = (req, res, next) => __awaiter(void 0, void 
 });
 NpmRegisteryRoutes.getPackageDetails = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        const { name, version } = req.query;
+        const npmUrl = `${config_1.config.NPM_REGISTERY_BASE_PATH}/${name}/${version}`;
+        const response = yield (0, node_fetch_1.default)(npmUrl);
+        const data = yield response.json();
+        return res.json({ message: 'Package Details Fetched', data });
     }
     catch (error) {
         next(error);

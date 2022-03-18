@@ -1,3 +1,6 @@
+import * as dotenv from 'dotenv';
+dotenv.config()
+
 class Config {
     DB_PATH: String;
     PORT: String;

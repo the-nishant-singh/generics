@@ -10,10 +10,15 @@ const api_1 = require("./routes/api");
 const port = config_1.config.PORT || 2501;
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
+app.use(express_1.default.json());
+app.use(express_1.default.urlencoded({ extended: true }));
 app.get('/', (req, res) => {
-    res.send('Health OK');
+    return res.send('Health OK');
 });
-api_1.api.use('/api', api_1.api);
+app.use('/api', api_1.api);
+app.use('*', (req, res) => {
+    return res.send('404 Noy Found');
+});
 // app.us
 app.listen(port, () => {
     return console.log(`Express is listening at port:${port}`);

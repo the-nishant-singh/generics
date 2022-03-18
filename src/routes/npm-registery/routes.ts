@@ -11,8 +11,8 @@ export class NpmRegisteryRoutes {
     next: NextFunction
   ) => {
     try {
-      const { query, page, size } = req.query;
-      const npmUrl = `${config.NPM_REGISTERY_BASE_PATH}/-/v1/search?text=${query}&size=${size || 10}&from=${page || 0}`;
+      const { text, page, size } = req.query;
+      const npmUrl = `${config.NPM_REGISTERY_BASE_PATH}/-/v1/search?text=${text}&size=${size || 10}&from=${page || 0}`;
       const response = await fetch(npmUrl);
       const data = await response.json();
       return res.json({ message: 'Data Fetched', data });

@@ -23,8 +23,8 @@ exports.NpmRegisteryRoutes = NpmRegisteryRoutes;
 _a = NpmRegisteryRoutes;
 NpmRegisteryRoutes.getPackagesList = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { query, page, size } = req.query;
-        const npmUrl = `${config_1.config.NPM_REGISTERY_BASE_PATH}/-/v1/search?text=${query}&size=${size || 10}&from=${page || 0}`;
+        const { text, page, size } = req.query;
+        const npmUrl = `${config_1.config.NPM_REGISTERY_BASE_PATH}/-/v1/search?text=${text}&size=${size || 10}&from=${page || 0}`;
         const response = yield (0, node_fetch_1.default)(npmUrl);
         const data = yield response.json();
         return res.json({ message: 'Data Fetched', data });
